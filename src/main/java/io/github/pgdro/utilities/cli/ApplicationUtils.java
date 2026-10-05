@@ -1,7 +1,7 @@
 /** Copyright 2026 Daniel-Gheorghe Popiniuc */
-package io.github.dgp_eu.utilities.cli;
+package io.github.pgdro.utilities.cli;
 
-import io.github.dgp_eu.tools.core.CommonInteractiveClass;
+import io.github.pgdro.tools.core.CommonInteractiveClass;
 import picocli.CommandLine;
 
 /**
@@ -30,6 +30,13 @@ public class ApplicationUtils {
         CommonInteractiveClass.startMeUpWithParameters("logs/Utilities", "/utilities-pom.xml");
         final int intUtilsExitCode = new CommandLine(new ApplicationUtils()).execute(args);
         CommonInteractiveClass.shutMeDownWithParameters(intUtilsExitCode, args[0]);
+    }
+
+    /**
+     * Private constructor to prevent instantiation
+     */
+    protected ApplicationUtils() {
+        // intentionally left blank
     }
 
 }

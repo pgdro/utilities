@@ -1,11 +1,10 @@
-package io.github.dgp_eu.utilities.cli;
+package io.github.pgdro.utilities.cli;
 
+import io.github.pgdro.tools.core.CommonInteractiveClass;
+import io.github.pgdro.tools.core.FileStatisticsClass;
+import io.github.pgdro.tools.core.LogExposureClass;
+import io.github.pgdro.utilities.ArchivingClass;
 import java.util.Properties;
-
-import io.github.dgp_eu.tools.core.CommonInteractiveClass;
-import io.github.dgp_eu.tools.core.FileStatisticsClass;
-import io.github.dgp_eu.tools.core.LogExposureClass;
-import io.github.dgp_eu.utilities.ArchivingClass;
 import picocli.CommandLine;
 import picocli.CommandLine.Mixin;
 
@@ -54,18 +53,20 @@ class ArchiveFolders implements Runnable {
     private String strArchiveSuffix;
 
     /**
-     * adds the options defined in 
+     * adds the options defined in
      * CommonInteractiveClass.FolderNameOptionMixinClass to this command
      */
     @Mixin
-    private final CommonInteractiveClass.FolderNameOptionMixinClass optFolderNames = new CommonInteractiveClass.FolderNameOptionMixinClass();
+    private final CommonInteractiveClass.FolderNameOptionMixinClass optFolderNames
+            = new CommonInteractiveClass.FolderNameOptionMixinClass();
 
     /**
-     * adds the options defined in 
+     * adds the options defined in
      * CommonInteractiveClass.FolderDestinationOptionMixinClass to this command
      */
     @Mixin
-    private final CommonInteractiveClass.FolderDestinationOptionMixinClass optFolderDest = new CommonInteractiveClass.FolderDestinationOptionMixinClass();
+    private final CommonInteractiveClass.FolderDestinationOptionMixinClass optFolderDest
+            = new CommonInteractiveClass.FolderDestinationOptionMixinClass();
 
     @Override
     public void run() {
@@ -99,6 +100,6 @@ class ArchiveFolders implements Runnable {
      * Constructor
      */
     protected ArchiveFolders() {
-        super();
+        // intentionally left blank
     }
 }

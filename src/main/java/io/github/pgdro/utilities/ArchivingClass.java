@@ -1,18 +1,17 @@
 /*
  * Copyright 2026 Daniel-Gheorghe Popiniuc
  */
-package io.github.dgp_eu.utilities;
+package io.github.pgdro.utilities;
 
+import io.github.pgdro.tools.core.BasicStructuresClass;
+import io.github.pgdro.tools.core.LogExposureClass;
+import io.github.pgdro.tools.core.ShellingClass;
 import java.io.File;
 import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Properties;
-
-import io.github.dgp_eu.tools.core.BasicStructuresClass;
-import io.github.dgp_eu.tools.core.LogExposureClass;
-import io.github.dgp_eu.tools.core.ShellingClass;
 
 /**
  * Archiving wrapper
@@ -32,7 +31,7 @@ public final class ArchivingClass {
     private static String strArchivingExec;
 
     /**
-     * Append File Separator to given Folder 
+     * Append File Separator to given Folder
      * @param inFolder folder given
      * @return String
      */
@@ -55,10 +54,13 @@ public final class ArchivingClass {
         final String strArchDir = "-ir!" + strArchivingDir.replace("\"", "") + "*";
         final ProcessBuilder builder;
         if (strArchivePwd == null) {
-            builder = new ProcessBuilder(strArchivingExec, "a", "-t7z", strArchiveName, strArchDir, "-mx9", "-ms4g", "-mmt=on");
+            builder = new ProcessBuilder(strArchivingExec, "a", "-t7z", strArchiveName, strArchDir,
+                    "-mx9", "-ms4g", "-mmt=on");
         } else {
-            builder = new ProcessBuilder(strArchivingExec, "a", "-t7z", strArchiveName, strArchDir, "-mx9", "-ms4g", "-mmt=on", "-p" + strArchivePwd);
-            LogExposureClass.exposeProcessBuilder(builder.command().toString().replaceFirst("-p" + strArchivePwd, "**H*I*D*D*E*N**P*A*S*S*W*O*R*D**"));
+            builder = new ProcessBuilder(strArchivingExec, "a", "-t7z", strArchiveName, strArchDir,
+                    "-mx9", "-ms4g", "-mmt=on", "-p" + strArchivePwd);
+            LogExposureClass.exposeProcessBuilder(builder.command().toString()
+                    .replaceFirst("-p" + strArchivePwd, "**H*I*D*D*E*N**P*A*S*S*W*O*R*D**"));
         }
         ShellingClass.setProcessCaptureNeed(false);
         ShellingClass.executeShell(builder, " ");
@@ -85,14 +87,20 @@ public final class ArchivingClass {
                 try {
                     fileOrigSize = Long.parseLong(sizeBytesStr);
                 } catch (NumberFormatException en) {
-                    final String strFeedback3 = String.format("Invalid SIZE_BYTES value '%s', defaulting to 0... %s", sizeBytesStr, Arrays.toString(en.getStackTrace()));
+                    final String strFeedback3 = String.format("Invalid SIZE_BYTES value '%s', defaulting to 0... %s",
+                            sizeBytesStr,
+                            Arrays.toString(en.getStackTrace()));
                     LogExposureClass.LOGGER.warn(strFeedback3);
                     fileOrigSize = 0L;
                 }
                 final BigDecimal percentage = BasicStructuresClass.computePercentageSafely(fileArchSize, fileOrigSize);
-                final String strFeedbackFinal = String.format("Folder %s statistics are %s which was compressed to " +
-                        "archive %s having a size of %s bytes (which is %s%% of the original)",
-                        strArchivingDir.replace("\"", ""), folderProps, strArchiveName, fileArchSize, percentage);
+                final String strFeedbackFinal = String.format("Folder %s statistics are %s which was compressed to "
+                        + "archive %s having a size of %s bytes (which is %s%% of the original)",
+                        strArchivingDir.replace("\"", ""),
+                        folderProps,
+                        strArchiveName,
+                        fileArchSize,
+                        percentage);
                 LogExposureClass.LOGGER.info(strFeedbackFinal);
             }
         }
@@ -112,7 +120,8 @@ public final class ArchivingClass {
             sbArchiveName.append(strArchiveSuffix);
         }
         sbArchiveName.append(".7z");
-        strArchiveName = BasicStructuresClass.StringTransformationSubClass.encloseStringIfContainsSpace(sbArchiveName.toString(), '\"');
+        strArchiveName = BasicStructuresClass.StringTransformationSubClass.encloseStringIfContainsSpace(
+                sbArchiveName.toString(), '\"');
     }
 
     /**
@@ -142,7 +151,8 @@ public final class ArchivingClass {
         if (inArchivePwd.matches("[A-Z0-9_]+")) {
             strGivenPassword = System.getenv(inArchivePwd); // get password value from Environment variable
         }
-        strArchivePwd = BasicStructuresClass.StringTransformationSubClass.encloseStringIfContainsSpace(strGivenPassword, '\"');
+        strArchivePwd = BasicStructuresClass.StringTransformationSubClass.encloseStringIfContainsSpace(
+                strGivenPassword, '\"');
     }
 
     /**
@@ -166,7 +176,8 @@ public final class ArchivingClass {
      * @param inArchivingExec String
      */
     public static void setArchivingExecutable(final String inArchivingExec) {
-        strArchivingExec = BasicStructuresClass.StringTransformationSubClass.encloseStringIfContainsSpace(inArchivingExec, '\"');
+        strArchivingExec = BasicStructuresClass.StringTransformationSubClass.encloseStringIfContainsSpace(
+                inArchivingExec, '\"');
     }
 
     /**

@@ -1,11 +1,10 @@
-package io.github.dgp_eu.utilities.cli;
+package io.github.pgdro.utilities.cli;
 
+import io.github.pgdro.tools.core.CommonInteractiveClass;
+import io.github.pgdro.tools.core.ConfigurationClass;
+import io.github.pgdro.tools.core.FileOperationsClass;
+import io.github.pgdro.tools.core.LogExposureClass;
 import java.util.Map;
-
-import io.github.dgp_eu.tools.core.CommonInteractiveClass;
-import io.github.dgp_eu.tools.core.ConfigurationClass;
-import io.github.dgp_eu.tools.core.FileOperationsClass;
-import io.github.dgp_eu.tools.core.LogExposureClass;
 import picocli.CommandLine;
 import picocli.CommandLine.Mixin;
 
@@ -17,11 +16,12 @@ import picocli.CommandLine.Mixin;
 class CleanOlderFilesFromFolder implements Runnable {
 
     /**
-     * adds the options defined in 
+     * adds the options defined in
      * CommonInteractiveClass.FolderNameOptionMixinClass to this command
      */
     @Mixin
-    private final CommonInteractiveClass.FolderNameOptionMixinClass optFolderNames = new CommonInteractiveClass.FolderNameOptionMixinClass();
+    private final CommonInteractiveClass.FolderNameOptionMixinClass optFolderNames
+            = new CommonInteractiveClass.FolderNameOptionMixinClass();
     /**
      * String for FileName
      */
@@ -38,9 +38,16 @@ class CleanOlderFilesFromFolder implements Runnable {
         final String[] inFolders = optFolderNames.getFolderNames();
         for (final String strFolder : inFolders) {
             FileOperationsClass.DeletingSubClass.OlderSubSubClass.setOrResetCleanedFolderStatistics();
-            FileOperationsClass.DeletingSubClass.OlderSubSubClass.deleteFilesOlderThanGivenDays(strFolder, intDaysOlderLimit);
-            final Map<String, Long> statsClndFldr = FileOperationsClass.DeletingSubClass.OlderSubSubClass.getCleanedFolderStatistics();
-            final String strFeedback = String.format("Folder %s has been cleaned eliminating %s files and freeing %s bytes in terms of disk space...", strFolder, statsClndFldr.get("Files"), statsClndFldr.get(ConfigurationClass.STR_SIZE));
+            FileOperationsClass.DeletingSubClass.OlderSubSubClass.deleteFilesOlderThanGivenDays(
+                    strFolder,
+                    intDaysOlderLimit);
+            final Map<String, Long> statsClndFldr
+                    = FileOperationsClass.DeletingSubClass.OlderSubSubClass.getCleanedFolderStatistics();
+            final String strFeedback = String.format(
+                    "Folder %s has been cleaned eliminating %s files and freeing %s bytes in terms of disk space...",
+                    strFolder,
+                    statsClndFldr.get("Files"),
+                    statsClndFldr.get(ConfigurationClass.STR_SIZE));
             LogExposureClass.LOGGER.info(strFeedback);
         }
     }
@@ -49,6 +56,7 @@ class CleanOlderFilesFromFolder implements Runnable {
      * Constructor
      */
     protected CleanOlderFilesFromFolder() {
-        super();
+        // intentionally left blank
     }
+
 }

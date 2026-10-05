@@ -1,13 +1,12 @@
-package io.github.dgp_eu.utilities.cli;
+package io.github.pgdro.utilities.cli;
 
+import io.github.pgdro.tools.core.CommonInteractiveClass;
+import io.github.pgdro.tools.core.FileStatisticsClass;
+import io.github.pgdro.tools.core.LogExposureClass;
+import io.github.pgdro.tools.core.time.TimingClass;
 import java.time.Duration;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-
-import io.github.dgp_eu.tools.core.CommonInteractiveClass;
-import io.github.dgp_eu.tools.core.FileStatisticsClass;
-import io.github.dgp_eu.tools.core.LogExposureClass;
-import io.github.dgp_eu.tools.core.time.TimingClass;
 import picocli.CommandLine;
 import picocli.CommandLine.Mixin;
 
@@ -19,17 +18,19 @@ import picocli.CommandLine.Mixin;
 class CaptureChecksumsOfFilesFromFoldersIntoCsvFile implements Runnable {
 
     /**
-     * adds the options defined in 
+     * adds the options defined in
      * CommonInteractiveClass.FolderNameOptionMixinClass to this command
      */
     @Mixin
-    private final CommonInteractiveClass.FolderNameOptionMixinClass optFolderNames = new CommonInteractiveClass.FolderNameOptionMixinClass();
+    private final CommonInteractiveClass.FolderNameOptionMixinClass optFolderNames
+            = new CommonInteractiveClass.FolderNameOptionMixinClass();
     /**
-     * adds the options defined in 
+     * adds the options defined in
      * CommonInteractiveClass.OutFileNameOptionMixinClass to this command
      */
     @Mixin
-    private final CommonInteractiveClass.OutFileNameOptionMixinClass optOutFileName = new CommonInteractiveClass.OutFileNameOptionMixinClass();
+    private final CommonInteractiveClass.OutFileNameOptionMixinClass optOutFileName
+            = new CommonInteractiveClass.OutFileNameOptionMixinClass();
 
     @Override
     public void run() {
@@ -42,7 +43,14 @@ class CaptureChecksumsOfFilesFromFoldersIntoCsvFile implements Runnable {
             FileStatisticsClass.captureFileStatisticsFromFolder(strFolder, outCsvFile);
             final ZonedDateTime zStopTimeStamp = ZonedDateTime.now(ZoneId.systemDefault());
             final Duration objDuration = Duration.between(startComputeTime, zStopTimeStamp);
-            final String strFeedback = String.format("For the folder %s calculated checksums are stored in the file %s operation completed in %s (which means %s | %s)", strFolder, outCsvFile, objDuration.toString(), TimingClass.AgingSubClass.computeAgingIntoHumanReadableWords(startComputeTime, zStopTimeStamp), TimingClass.AgingSubClass.computeAgingIntoTimeClock(startComputeTime, zStopTimeStamp));
+            final String strFeedback = String.format(
+                    "For the folder %s calculated checksums are stored in the file %s, "
+                            + "operation completed in %s (which means %s | %s)",
+                    strFolder,
+                    outCsvFile,
+                    objDuration.toString(),
+                    TimingClass.AgingSubClass.computeAgingIntoHumanReadableWords(startComputeTime, zStopTimeStamp),
+                    TimingClass.AgingSubClass.computeAgingIntoTimeClock(startComputeTime, zStopTimeStamp));
             LogExposureClass.LOGGER.info(strFeedback);
         }
     }
@@ -51,6 +59,7 @@ class CaptureChecksumsOfFilesFromFoldersIntoCsvFile implements Runnable {
      * Constructor
      */
     protected CaptureChecksumsOfFilesFromFoldersIntoCsvFile() {
-        super();
+        // intentionally left blank
     }
+
 }

@@ -1,10 +1,9 @@
-package io.github.dgp_eu.utilities.cli;
+package io.github.pgdro.utilities.cli;
 
+import io.github.pgdro.tools.core.CommonInteractiveClass;
+import io.github.pgdro.tools.core.FileOperationsClass;
+import io.github.pgdro.tools.core.LogExposureClass;
 import java.util.List;
-
-import io.github.dgp_eu.tools.core.CommonInteractiveClass;
-import io.github.dgp_eu.tools.core.FileOperationsClass;
-import io.github.dgp_eu.tools.core.LogExposureClass;
 import picocli.CommandLine;
 import picocli.CommandLine.Mixin;
 
@@ -16,18 +15,22 @@ import picocli.CommandLine.Mixin;
 class GetSubFoldersFromFolders implements Runnable {
 
     /**
-     * adds the options defined in 
+     * adds the options defined in
      * CommonInteractiveClass.FolderNameOptionMixinClass to this command
      */
     @Mixin
-    private final CommonInteractiveClass.FolderNameOptionMixinClass optFolderNames = new CommonInteractiveClass.FolderNameOptionMixinClass();
+    private final CommonInteractiveClass.FolderNameOptionMixinClass optFolderNames
+            = new CommonInteractiveClass.FolderNameOptionMixinClass();
 
     @Override
     public void run() {
         final String[] inFolders = optFolderNames.getFolderNames();
         for (final String strFolder : inFolders) {
-            final List<String> arraySubFolders = FileOperationsClass.RetrievingSubClass.getSubFoldersFromFolder(strFolder);
-            final String strFeedback = String.format("Considering folder %s following sub-folders were found: %s", strFolder, arraySubFolders);
+            final List<String> arraySubFolders
+                    = FileOperationsClass.RetrievingSubClass.getSubFoldersFromFolder(strFolder);
+            final String strFeedback = String.format("Considering folder %s following sub-folders were found: %s",
+                    strFolder,
+                    arraySubFolders);
             LogExposureClass.LOGGER.info(strFeedback);
         }
     }
@@ -36,7 +39,7 @@ class GetSubFoldersFromFolders implements Runnable {
      * Private constructor to prevent instantiation
      */
     protected GetSubFoldersFromFolders() {
-        super();
+        // intentionally left blank
     }
 
 }

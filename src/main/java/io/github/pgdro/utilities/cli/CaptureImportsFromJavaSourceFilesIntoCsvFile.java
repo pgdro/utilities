@@ -1,9 +1,8 @@
-package io.github.dgp_eu.utilities.cli;
+package io.github.pgdro.utilities.cli;
 
+import io.github.pgdro.tools.core.CommonInteractiveClass;
+import io.github.pgdro.tools.core.FileContentClass;
 import java.nio.file.Path;
-
-import io.github.dgp_eu.tools.core.CommonInteractiveClass;
-import io.github.dgp_eu.tools.core.FileContentClass;
 import picocli.CommandLine;
 import picocli.CommandLine.Mixin;
 
@@ -15,24 +14,28 @@ import picocli.CommandLine.Mixin;
 class CaptureImportsFromJavaSourceFilesIntoCsvFile implements Runnable {
 
     /**
-     * adds the options defined in 
+     * adds the options defined in
      * CommonInteractiveClass.FolderNameOptionMixinClass to this command
      */
     @Mixin
-    private final CommonInteractiveClass.FolderNameOptionMixinClass optFolderNames = new CommonInteractiveClass.FolderNameOptionMixinClass();
+    private final CommonInteractiveClass.FolderNameOptionMixinClass optFolderNames
+            = new CommonInteractiveClass.FolderNameOptionMixinClass();
     /**
-     * adds the options defined in 
+     * adds the options defined in
      * CommonInteractiveClass.OutFileNameOptionMixinClass to this command
      */
     @Mixin
-    private final CommonInteractiveClass.OutFileNameOptionMixinClass optionOut = new CommonInteractiveClass.OutFileNameOptionMixinClass();
+    private final CommonInteractiveClass.OutFileNameOptionMixinClass optionOut =
+            new CommonInteractiveClass.OutFileNameOptionMixinClass();
 
     @Override
     public void run() {
         final String[] inFolders = optFolderNames.getFolderNames();
         final String outCsvFile = optionOut.getOutFileName();
         for (final String strFolder : inFolders) {
-            FileContentClass.ContentReadingSubClass.extractImportStatementsFromJavaSourceFilesIntoCsvFile(Path.of(strFolder), Path.of(outCsvFile));
+            FileContentClass.ContentReadingSubClass.extractImportStatementsFromJavaSourceFilesIntoCsvFile(
+                    Path.of(strFolder),
+                    Path.of(outCsvFile));
         }
     }
 
@@ -40,6 +43,7 @@ class CaptureImportsFromJavaSourceFilesIntoCsvFile implements Runnable {
      * Constructor
      */
     protected CaptureImportsFromJavaSourceFilesIntoCsvFile() {
-        super();
+        // intentionally left blank
     }
+
 }
