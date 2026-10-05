@@ -284,7 +284,7 @@
                         <configuration>
                             <rules>
                                 <requireMavenVersion>
-                                    <version>[3.10,)</version>
+                                    <version>[3.9,)</version>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>
@@ -342,7 +342,7 @@
                         <version>${maven-shade-plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>make-fat-jar</id>
+                                <id>make-jar</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>shade</goal>
