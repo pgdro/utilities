@@ -1,8 +1,8 @@
 package io.github.pgdro.utilities.cli;
 
-import io.github.pgdro.tools.core.CommonInteractiveClass;
-import io.github.pgdro.tools.core.FileStatisticsClass;
+import io.github.pgdro.tools.core.InteractiveInputClass;
 import io.github.pgdro.tools.core.LogExposureClass;
+import io.github.pgdro.tools.core.file.FileStatisticsClass;
 import io.github.pgdro.utilities.ArchivingClass;
 import java.util.Properties;
 import picocli.CommandLine;
@@ -21,7 +21,7 @@ class ArchiveFolders implements Runnable {
     @CommandLine.Option(
             names = {"-aExe", "--archivingExecutable"},
             description = "Archiving executable (including full path, required, only one)",
-            arity = CommonInteractiveClass.ARITY_ONLY_ONE,
+            arity = InteractiveInputClass.ARITY_ONLY_ONE,
             required = true)
     private String strArchivingExec;
 
@@ -31,7 +31,7 @@ class ArchiveFolders implements Runnable {
     @CommandLine.Option(
             names = {"-pwd", "--archivePassword"},
             description = "Password for archive encryption (optional, only one)",
-            arity = CommonInteractiveClass.ARITY_ONLY_ONE)
+            arity = InteractiveInputClass.ARITY_ONLY_ONE)
     private String strArchivePwd;
 
     /**
@@ -40,7 +40,7 @@ class ArchiveFolders implements Runnable {
     @CommandLine.Option(
             names = {"-ap", "--archivePrefix"},
             description = "Prefix to apply to archive name (optional, only one)",
-            arity = CommonInteractiveClass.ARITY_ONLY_ONE)
+            arity = InteractiveInputClass.ARITY_ONLY_ONE)
     private String strArchivePrefix;
 
     /**
@@ -49,24 +49,24 @@ class ArchiveFolders implements Runnable {
     @CommandLine.Option(
             names = {"-as", "--archiveSuffix"},
             description = "Suffix to apply to archive name (optional, only one)",
-            arity = CommonInteractiveClass.ARITY_ONLY_ONE)
+            arity = InteractiveInputClass.ARITY_ONLY_ONE)
     private String strArchiveSuffix;
 
     /**
      * adds the options defined in
-     * CommonInteractiveClass.FolderNameOptionMixinClass to this command
+     * InteractiveInputClass.FolderNameOptionMixinClass to this command
      */
     @Mixin
-    private final CommonInteractiveClass.FolderNameOptionMixinClass optFolderNames
-            = new CommonInteractiveClass.FolderNameOptionMixinClass();
+    private final InteractiveInputClass.FolderNameOptionMixinClass optFolderNames
+            = new InteractiveInputClass.FolderNameOptionMixinClass();
 
     /**
      * adds the options defined in
-     * CommonInteractiveClass.FolderDestinationOptionMixinClass to this command
+     * InteractiveInputClass.FolderDestinationOptionMixinClass to this command
      */
     @Mixin
-    private final CommonInteractiveClass.FolderDestinationOptionMixinClass optFolderDest
-            = new CommonInteractiveClass.FolderDestinationOptionMixinClass();
+    private final InteractiveInputClass.FolderDestinationOptionMixinClass optFolderDest
+            = new InteractiveInputClass.FolderDestinationOptionMixinClass();
 
     @Override
     public void run() {

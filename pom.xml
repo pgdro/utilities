@@ -52,10 +52,10 @@
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <sonar.organization>pgdro</sonar.organization>
         <!-- Dependency versions -->
-        <tools.version>2.0.0</tools.version>
-        <jackson-databind.version>3.2.3</jackson-databind.version>
+        <tools.version>2.1.2</tools.version>
+        <jackson-databind.version>3.2.4</jackson-databind.version>
         <!-- Build Plugin versions -->
-        <central-publishing-maven-plugin.version>0.11.0</central-publishing-maven-plugin.version>
+        <central-publishing-maven-plugin.version>0.12.0</central-publishing-maven-plugin.version>
         <depgraph-maven-plugin.version>4.0.5</depgraph-maven-plugin.version>
         <maven-antrun-plugin.version>3.2.0</maven-antrun-plugin.version>
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
@@ -67,7 +67,7 @@
         <open-java-format.version>2.98.0.6</open-java-format.version>
         <pmd.version>7.28.0</pmd.version>
         <takari-lifecycle-plugin.version>2.3.4</takari-lifecycle-plugin.version>
-        <versions-maven-plugin.version>2.22.0</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.23.0</versions-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -348,6 +348,7 @@
                                     <goal>shade</goal>
                                 </goals>
                                 <configuration>
+                                    <createDependencyReducedPom>false</createDependencyReducedPom>
                                     <!-- Keep original JAR -->
                                     <shadedArtifactAttached>true</shadedArtifactAttached>
                                     <transformers>

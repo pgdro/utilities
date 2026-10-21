@@ -1,7 +1,7 @@
 /** Copyright 2026 Daniel-Gheorghe Popiniuc */
 package io.github.pgdro.utilities.cli;
 
-import io.github.pgdro.tools.core.CommonInteractiveClass;
+import io.github.pgdro.tools.core.InteractiveInputClass;
 import picocli.CommandLine;
 
 /**
@@ -27,9 +27,9 @@ public class ApplicationUtils {
      * @param args input arguments
      */
     public static void main( final String[] args ) {
-        CommonInteractiveClass.startMeUpWithParameters("logs/Utilities", "/utilities-pom.xml");
+        InteractiveInputClass.startMeUpWithParameters("logs/Utilities", "/utilities-pom.xml");
         final int intUtilsExitCode = new CommandLine(new ApplicationUtils()).execute(args);
-        CommonInteractiveClass.shutMeDownWithParameters(intUtilsExitCode, args[0]);
+        InteractiveInputClass.shutMeDownWithParameters(intUtilsExitCode, args[0]);
     }
 
     /**

@@ -1,8 +1,8 @@
 package io.github.pgdro.utilities.cli;
 
-import io.github.pgdro.tools.core.CommonInteractiveClass;
-import io.github.pgdro.tools.core.FileStatisticsClass;
+import io.github.pgdro.tools.core.InteractiveInputClass;
 import io.github.pgdro.tools.core.LogExposureClass;
+import io.github.pgdro.tools.core.file.FileStatisticsClass;
 import io.github.pgdro.tools.core.time.TimingClass;
 import java.time.Duration;
 import java.time.ZoneId;
@@ -19,18 +19,18 @@ class CaptureChecksumsOfFilesFromFoldersIntoCsvFile implements Runnable {
 
     /**
      * adds the options defined in
-     * CommonInteractiveClass.FolderNameOptionMixinClass to this command
+     * InteractiveInputClass.FolderNameOptionMixinClass to this command
      */
     @Mixin
-    private final CommonInteractiveClass.FolderNameOptionMixinClass optFolderNames
-            = new CommonInteractiveClass.FolderNameOptionMixinClass();
+    private final InteractiveInputClass.FolderNameOptionMixinClass optFolderNames
+            = new InteractiveInputClass.FolderNameOptionMixinClass();
     /**
      * adds the options defined in
-     * CommonInteractiveClass.OutFileNameOptionMixinClass to this command
+     * InteractiveInputClass.OutFileNameOptionMixinClass to this command
      */
     @Mixin
-    private final CommonInteractiveClass.OutFileNameOptionMixinClass optOutFileName
-            = new CommonInteractiveClass.OutFileNameOptionMixinClass();
+    private final InteractiveInputClass.OutFileNameOptionMixinClass optOutFileName
+            = new InteractiveInputClass.OutFileNameOptionMixinClass();
 
     @Override
     public void run() {

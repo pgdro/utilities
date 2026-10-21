@@ -1,6 +1,6 @@
 package io.github.pgdro.utilities.cli;
 
-import io.github.pgdro.tools.core.CommonInteractiveClass;
+import io.github.pgdro.tools.core.InteractiveInputClass;
 import io.github.pgdro.tools.core.ShellingClass;
 import picocli.CommandLine;
 import picocli.CommandLine.Mixin;
@@ -13,11 +13,11 @@ import picocli.CommandLine.Mixin;
 class CaptureWindowsApplicationsInstalledIntoCsvFile implements Runnable {
     /**
      * adds the options defined in
-     * CommonInteractiveClass.OutFileNameOptionMixinClass to this command
+     * InteractiveInputClass.OutFileNameOptionMixinClass to this command
      */
     @Mixin
-    private final CommonInteractiveClass.OutFileNameOptionMixinClass optionOut
-            = new CommonInteractiveClass.OutFileNameOptionMixinClass();
+    private final InteractiveInputClass.OutFileNameOptionMixinClass optionOut
+            = new InteractiveInputClass.OutFileNameOptionMixinClass();
 
     @Override
     public void run() {
