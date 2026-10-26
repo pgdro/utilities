@@ -6,6 +6,8 @@ package io.github.pgdro.utilities;
 import io.github.pgdro.tools.core.BasicStructuresClass;
 import io.github.pgdro.tools.core.LogExposureClass;
 import io.github.pgdro.tools.core.ShellingClass;
+import io.github.pgdro.tools.core.StringingClass;
+
 import java.io.File;
 import java.math.BigDecimal;
 import java.nio.file.Path;
@@ -120,7 +122,7 @@ public final class ArchivingClass {
             sbArchiveName.append(strArchiveSuffix);
         }
         sbArchiveName.append(".7z");
-        strArchiveName = BasicStructuresClass.StringTransformationSubClass.encloseStringIfContainsSpace(
+        strArchiveName = StringingClass.StringTransformationSubClass.encloseStringIfContainsSpace(
                 sbArchiveName.toString(), '\"');
     }
 
@@ -151,7 +153,7 @@ public final class ArchivingClass {
         if (inArchivePwd.matches("[A-Z0-9_]+")) {
             strGivenPassword = System.getenv(inArchivePwd); // get password value from Environment variable
         }
-        strArchivePwd = BasicStructuresClass.StringTransformationSubClass.encloseStringIfContainsSpace(
+        strArchivePwd = StringingClass.StringTransformationSubClass.encloseStringIfContainsSpace(
                 strGivenPassword, '\"');
     }
 
@@ -176,7 +178,7 @@ public final class ArchivingClass {
      * @param inArchivingExec String
      */
     public static void setArchivingExecutable(final String inArchivingExec) {
-        strArchivingExec = BasicStructuresClass.StringTransformationSubClass.encloseStringIfContainsSpace(
+        strArchivingExec = StringingClass.StringTransformationSubClass.encloseStringIfContainsSpace(
                 inArchivingExec, '\"');
     }
 
